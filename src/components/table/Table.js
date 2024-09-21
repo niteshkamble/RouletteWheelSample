@@ -32,7 +32,7 @@ class RouletteTable extends React.Component {
 
   //SELECTING BETS
   numsSelectionHandler = (num, whichRow) => {
-
+  
     //checking if my props.arr is empty, if it is, leave empty, if it is not, spread it
     let nums = this.props.arr.length === 0 ? [] : [...this.props.arr];
 
@@ -70,7 +70,9 @@ class RouletteTable extends React.Component {
       /* BETS SELECT HANDLING START */
 
     } else if (nums.indexOf(num) === -1) { //if number is NOT present in array, select it and put the chip on it
-
+      if (this.props.coins <=0) {
+        return alert('Not enough coins to add a new chip');
+      }
       //decrementing coins 
       coins = this.props.coins - this.props.chip;
 
