@@ -60,6 +60,8 @@ class App extends React.Component {
 
   //handling losing
   userLost = () => {
+    console.log("user lost");
+    
     //update state for message and losses 
     this.setState({
       message: `No luck this time!`,
@@ -178,9 +180,7 @@ class App extends React.Component {
 
   //gonna pass this function as props to my Weel.js, so i can update it back with the winning number and determine if user won or loose
   updateNum = (num) => {
-    console.log("updateNum function : ",num);
     
-
     this.setState({ num, count: this.state.count + 1 }); //i'm getting number, that's one spin, updating state with this info
 
     //map the array of bets
@@ -188,8 +188,6 @@ class App extends React.Component {
 
       if (item === num) { //if it's just a single number
         this.userWin(35); //multiplier is 35, user win a bunch of coins
-      }else{
-        this.userLost();// user lost
       }
 
       //here gonna filter the mini-arrays (borders, columns etc.) and see if winner number is present in any of them
@@ -220,6 +218,8 @@ class App extends React.Component {
 
     //if there is nothing in existing numbers array, means user lost, firing the respective function
     if (this.state.extArr.length === 0) {
+      console.log('array check');
+      
       this.userLost();
     }
   }
