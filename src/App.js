@@ -189,7 +189,7 @@ class App extends React.Component {
       if (item === num) { //if it's just a single number
         this.userWin(35); //multiplier is 35, user win a bunch of coins
       }else{
-        this.userLost();
+        this.userLost();// user lost
       }
 
       //here gonna filter the mini-arrays (borders, columns etc.) and see if winner number is present in any of them
