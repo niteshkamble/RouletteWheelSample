@@ -26,7 +26,7 @@ class App extends React.Component {
     count: 0, //spins count
     wins: 0, //wins count
     chip: 10, //chip value
-    coins: 100, //coins count
+    coins: 110, //coins count
     losses: 0, //losses count
     spinning: false, //the wheel is spinning?
     message: "Put your bets and spin the wheel!", //message
@@ -151,9 +151,11 @@ class App extends React.Component {
       let filtering = element.filter(isItMyNum => isItMyNum == num);
       if (filtering == num) {
         extArr.push(num);
-        this.setState({ extArr });
-        this.userWin(multiplier);
-        console.log(this.state.extArr);
+        this.setState({ extArr },()=>{
+          this.userWin(multiplier);
+          console.log(this.state.extArr);
+        });
+        
       }
     }
   }
@@ -165,15 +167,19 @@ class App extends React.Component {
       let filtered = arrName.filter(item => item == num);
       if (filtered == num) {
         extArr.push(num);
-        this.setState({ extArr })
-        this.userWin(multiplier)
-        console.log(this.state.extArr);
+        this.setState({ extArr },()=>{
+          this.userWin(multiplier)
+          console.log(this.state.extArr);
+        })
+        
       }
     }
   }
 
   //gonna pass this function as props to my Weel.js, so i can update it back with the winning number and determine if user won or loose
   updateNum = (num) => {
+    console.log("updateNum function : ",num);
+    
 
     this.setState({ num, count: this.state.count + 1 }); //i'm getting number, that's one spin, updating state with this info
 
@@ -182,6 +188,8 @@ class App extends React.Component {
 
       if (item === num) { //if it's just a single number
         this.userWin(35); //multiplier is 35, user win a bunch of coins
+      }else{
+        this.userLost();
       }
 
       //here gonna filter the mini-arrays (borders, columns etc.) and see if winner number is present in any of them
